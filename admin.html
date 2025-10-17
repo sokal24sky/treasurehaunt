@@ -7,12 +7,30 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <a href="index.html" class="logo-link" aria-label="Home"><img src="https://i.ibb.co.com/jZqbQKcW/SShoop-logo-cov.jpg" alt="Logo"></a>
+  <a href="history.html" class="history-btn" aria-label="View scan history" title="View scan history">🕘</a>
   <div class="container">
-    <h1>👑 Admin Panel</h1>
-    <input type="text" id="encryptInput" placeholder="Enter text to encrypt">
-    <button id="generateBtn">Generate QR</button>
-    <div id="qrContainer"></div>
+    <!-- Password Form (shown initially) -->
+    <div id="passwordForm">
+      <h1>🔐 Admin Access</h1>
+      <input type="password" id="passwordInput" placeholder="Enter admin password">
+      <button id="loginBtn">Login</button>
+      <div id="errorMsg" class="error-msg"></div>
+    </div>
+
+    <!-- Admin Panel (shown after successful login) -->
+    <div id="adminPanel" style="display: none;">
+      <h1>👑 Admin Panel</h1>
+      <button id="logoutBtn" class="logout-btn">Logout</button>
+      <input type="text" id="encryptInput" placeholder="Enter text to encrypt">
+      <button id="generateBtn">Generate QR</button>
+      <div id="qrContainer"></div>
+    </div>
   </div>
+
+  <footer class="site-footer">
+    <a href="https://www.facebook.com/TheHiran/" target="_blank" rel="noopener noreferrer">© Hiran Sarfaraz</a>
+  </footer>
 
   <!-- QR Code Generator Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
