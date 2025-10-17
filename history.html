@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scan History</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    // Render history from localStorage on load
+    document.addEventListener('DOMContentLoaded', () => {
+      const list = document.getElementById('historyList');
+      const empty = document.getElementById('emptyState');
+      const rawSub = localStorage.getItem('user_submissions');
+      let submissions = [];
+      try { submissions = rawSub ? JSON.parse(rawSub) : []; } catch { submissions = []; }
+      if (!Array.isArray(submissions) || submissions.length === 0) {
+        empty.style.display = 'block';
+        return;
+      }
+      const fragment = document.createDocumentFragment();
+      submissions.reverse().forEach((s) => {
+        const li = document.createElement('li');
+        const time = new Date(s.submittedAt).toLocaleString();
+        const name = s.fullName || 'Unknown';
+        const loc = s.location || 'Unknown';
+        li.innerHTML = `<strong>${name}</strong> — ${loc}<br><small>${time}</small>`;
+        fragment.appendChild(li);
+      });
+      list.appendChild(fragment);
+    });
+
+    function clearHistory() {
+      localStorage.removeItem('scan_history');
+      window.location.reload();
+    }
+  </script>
+</head>
+<body>
+  <a href="index.html" class="logo-link" aria-label="Home"><img src="https://i.ibb.co.com/jZqbQKcW/SShoop-logo-cov.jpg" alt="Logo"></a>
+  <a href="history.html" class="history-btn" aria-label="View scan history" title="View scan history">🕘</a>
+  <div class="container">
+    <h1>🕘 Scan History</h1>
+    <p id="emptyState" style="display:none">No scans yet.</p>
+    <ul id="historyList" class="history-list"></ul>
+  </div>
+
+  <footer class="site-footer">
+    <a href="https://www.facebook.com/TheHiran/" target="_blank" rel="noopener noreferrer">© Hiran Sarfaraz</a>
+  </footer>
+</body>
+</html>
+
+
