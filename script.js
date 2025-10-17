@@ -238,10 +238,13 @@ if (document.getElementById('verifyBtn')) {
         // ignore storage errors
       }
 
-      // success UI
-      formMsg.style.color = '#22c55e';
-      formMsg.textContent = '✅ Submitted successfully!';
-      userForm.reset();
+      // success UI: hide form and show thank you message
+      userForm.style.display = 'none';
+      formMsg.textContent = '';
+      const resultMsgEl = document.getElementById('resultMsg');
+      if (resultMsgEl) {
+        resultMsgEl.innerHTML = '<strong>Thank You! you will receive soon!</strong>';
+      }
     });
   }
 
