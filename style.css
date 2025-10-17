@@ -116,6 +116,24 @@ button:hover {
   background: rgba(255,255,255,0.12);
 }
 
+/* Secret key row layout */
+#secretRow {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+#secretRow input {
+  width: auto; /* override global 100% */
+  flex: 1;
+}
+
+#secretRow button {
+  width: auto; /* override global 100% */
+  padding: 10px 12px;
+  line-height: 1;
+}
+
 /* History page */
 .history-list {
   text-align: left;
