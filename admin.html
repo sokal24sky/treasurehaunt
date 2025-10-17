@@ -22,9 +22,20 @@
     <div id="adminPanel" style="display: none;">
       <h1>👑 Admin Panel</h1>
       <button id="logoutBtn" class="logout-btn">Logout</button>
+
+      <!-- With key -->
+      <h3 style="margin-top:8px;">Generate QR (with key)</h3>
       <input type="text" id="encryptInput" placeholder="Enter text to encrypt">
       <button id="generateBtn">Generate QR</button>
-      <div id="qrContainer"></div>
+
+      <!-- Without key -->
+      <h3 style="margin-top:18px;">Generate QR (without key)</h3>
+      <button id="generateNoKeyBtn">Generate QR (No Key)</button>
+
+      <div id="qrContainer" style="margin-top:12px;"></div>
+
+      <h3 style="margin-top:24px;">Pending Submissions</h3>
+      <div id="submissions"></div>
     </div>
   </div>
 
