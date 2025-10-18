@@ -112,7 +112,7 @@ if (document.getElementById('submissions')) {
             <div><strong>${s.fullName}</strong> — ${s.location}</div>
             <div><small>${time}</small></div>
             <div><small>Phone:</small> ${s.bkashNumber || ''}</div>
-            <div><small>Amount:</small> ${s.decrypted || ''}</div>
+            <div><small>Amount:</small> ${s.encrypted || ''}</div>
             <div style="margin-top:6px;word-break:break-all;"><small>Secret:</small> ${s.secret || ''}</div>
             <div style="word-break:break-all;"><small>Key:</small> ${s.key || ''}</div>
           </div>`;
@@ -266,4 +266,5 @@ if (document.getElementById('verifyBtn')) {
     });
   }
 }
+
 
