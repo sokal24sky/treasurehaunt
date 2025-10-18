@@ -12,10 +12,10 @@ app.use(cors());
 
 // MySQL Database Connection
 const db = mysql.createConnection({
-  host: 'your-database-host', // Replace with your phpMyAdmin host
-  user: 'your-database-username', // Replace with your database username
-  password: 'your-database-password', // Replace with your database password
-  database: 'your-database-name', // Replace with your database name
+  host: 'sql107.infinityfree.com', // Replace with your phpMyAdmin host
+  user: 'if0_38420686', // Replace with your database username
+  password: 'wH0GodKSH7JU', // Replace with your database password
+  database: 'if0_38420686_treasurehaunt', // Replace with your database name
 });
 
 db.connect((err) => {
@@ -56,4 +56,5 @@ app.get('/api/history', (req, res) => {
 // Start Server
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
+
 });
