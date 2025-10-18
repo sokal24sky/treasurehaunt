@@ -79,17 +79,32 @@ if (document.getElementById('generateBtn')) {
   const noKeyBtn = document.getElementById('generateNoKeyBtn');
 
   btn.addEventListener('click', () => {
-    const encrypted = encryptText(input.value.trim());
+    const inputValue = input.value.trim();
+    const uniqueSalt = `${Date.now()}:${Math.random().toString(36).slice(2)}`;
+    const encrypted = encryptText(`${inputValue}:${uniqueSalt}`);
     const url = `${window.location.origin}/index.html?key=${encrypted}`;
     qrContainer.innerHTML = '';
     new QRCode(qrContainer, url);
+
+    // Save QR code details to localStorage
+    const qrData = { text: inputValue, encrypted, timestamp: Date.now() };
+    const qrHistory = JSON.parse(localStorage.getItem('qr_history') || '[]');
+    qrHistory.push(qrData);
+    localStorage.setItem('qr_history', JSON.stringify(qrHistory));
   });
 
   if (noKeyBtn) {
     noKeyBtn.addEventListener('click', () => {
-      const url = `${window.location.origin}/index.html`;
+      const noKeyInput = document.getElementById('noKeyInput');
+      const optionalText = noKeyInput ? noKeyInput.value.trim() : '';
+      const url = optionalText
+        ? `${window.location.origin}/index.html?text=${encodeURIComponent(optionalText)}`
+        : `${window.location.origin}/index.html`;
       qrContainer.innerHTML = '';
       new QRCode(qrContainer, url);
+
+      // Mark QR code as "No Key" to exclude from submissions
+      localStorage.setItem('no_key_generated', 'true');
     });
   }
 }
@@ -112,9 +127,9 @@ if (document.getElementById('submissions')) {
             <div><strong>${s.fullName}</strong> — ${s.location}</div>
             <div><small>${time}</small></div>
             <div><small>Phone:</small> ${s.bkashNumber || ''}</div>
-            <div><small>Amount:</small> ${s.encrypted || ''}</div>
             <div style="margin-top:6px;word-break:break-all;"><small>Secret:</small> ${s.secret || ''}</div>
             <div style="word-break:break-all;"><small>Key:</small> ${s.key || ''}</div>
+            <div style="word-break:break-all;"><small>Decrypted Text:</small> ${s.decryptedText || ''}</div>
           </div>`;
         })
         .join('');
@@ -244,7 +259,7 @@ if (document.getElementById('verifyBtn')) {
       formMsg.textContent = '';
       const resultMsgEl = document.getElementById('resultMsg');
       if (resultMsgEl) {
-        resultMsgEl.innerHTML = '<strong>Thanks! you will receive your treasure soon!</strong>';
+        resultMsgEl.innerHTML = '<strong>Thank You! you will receive soon!</strong>';
       }
     });
   }
@@ -266,5 +281,3 @@ if (document.getElementById('verifyBtn')) {
     });
   }
 }
-
-
